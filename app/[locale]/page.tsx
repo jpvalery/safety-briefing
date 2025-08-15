@@ -1,23 +1,20 @@
-'use client';
-
 import { BeforeFlyingSection } from '@/components/before-flying-section';
 import { Footer } from '@/components/footer';
 import { LanguageSwitcher } from '@/components/language-switcher';
 import { PassengerBriefingSection } from '@/components/passenger-briefing-section';
 import type { Locale } from '@/lib/i18n';
 import { translations } from '@/lib/translations';
+import React from 'react';
 
-export default async function HomePage({
+export default function HomePage({
 	params,
-}: {
-	params: Promise<{ locale: Locale }>;
-}) {
-	const { locale } = await params;
+}: { params: Promise<{ locale: Locale }> }) {
+	// unwrap the params promise
+	const { locale } = React.use(params);
 	const t = translations[locale];
 
 	return (
 		<div className="min-h-screen bg-white">
-			{/* Header */}
 			<header className="border-zinc-900 border-b-2 bg-zinc-50 py-6">
 				<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 					<div className="flex items-center justify-between">
@@ -34,7 +31,6 @@ export default async function HomePage({
 				<PassengerBriefingSection locale={locale} />
 			</main>
 
-			{/* Footer */}
 			<Footer locale={locale} />
 		</div>
 	);

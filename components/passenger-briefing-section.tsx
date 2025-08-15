@@ -69,7 +69,9 @@ export function PassengerBriefingSection({
 							<h3 className="mb-4 font-bold text-lg text-zinc-950 uppercase tracking-wide md:text-2xl">
 								{item.title}
 							</h3>
-							<p className="text-zinc-800 leading-relaxed md:text-lg">{item.content}</p>
+							<p className="text-zinc-800 leading-relaxed md:text-lg">
+								{item.content}
+							</p>
 						</div>
 					</div>
 				))}

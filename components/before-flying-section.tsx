@@ -2,8 +2,11 @@
 
 import type { Locale } from '@/lib/i18n';
 import { translations } from '@/lib/translations';
-import { BowlFoodIcon, PantsIcon, SmileyNervousIcon } from '@phosphor-icons/react';
-
+import {
+	BowlFoodIcon,
+	PantsIcon,
+	SmileyNervousIcon,
+} from '@phosphor-icons/react';
 
 interface BeforeFlyingSectionProps {
 	locale: Locale;
@@ -29,7 +32,7 @@ export function BeforeFlyingSection({ locale }: BeforeFlyingSectionProps) {
 					const Icon = item.icon;
 					return (
 						<div key={index} className="border-2 border-zinc-900 bg-zinc-50 p-6">
-							<div className='flex h-16 items-center gap-3 pb-4'>
+							<div className="flex h-16 items-center gap-3 pb-4">
 								<Icon size={42} />
 								<h3 className="text-balance font-bold text-lg text-zinc-950 uppercase tracking-wide">
 									{item.title}
