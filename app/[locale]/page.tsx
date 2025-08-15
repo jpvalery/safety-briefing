@@ -9,9 +9,16 @@ import React from 'react';
 export default function HomePage({
 	params,
 }: { params: Promise<{ locale: Locale }> }) {
-	// unwrap the params promise
 	const { locale } = React.use(params);
 	const t = translations[locale];
+
+	if (!t) {
+		return (
+			<div className="flex min-h-screen items-center justify-center">
+				Loading...
+			</div>
+		);
+	}
 
 	return (
 		<div className="min-h-screen bg-white">
