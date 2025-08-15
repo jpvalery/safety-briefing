@@ -53,7 +53,7 @@ export const translations = {
 			fr: 'Français',
 		},
 		footer: {
-			license: 'Licensed under MIT License. View source on',
+			license: 'Licensed under MIT License. View source and contribute on',
 		},
 	},
 	fr: {
@@ -110,7 +110,7 @@ export const translations = {
 			fr: 'Français',
 		},
 		footer: {
-			license: 'Sous licence MIT. Voir le code source sur',
+			license: 'Sous licence MIT. Voir le code source et contribuer sur',
 		},
 	},
 } as const;
