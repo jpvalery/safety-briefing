@@ -1,5 +1,6 @@
 import type { Locale } from '@/lib/i18n';
 import { translations } from '@/lib/translations';
+import Image from 'next/image';
 
 interface PassengerBriefingSectionProps {
 	locale: Locale;
@@ -57,8 +58,10 @@ export function PassengerBriefingSection({
 					>
 						{/* Illustration Column */}
 						<div className="flex items-center justify-center">
-							<img
-								src={`/${item.imageFile}?height=200&width=200`}
+							<Image
+								src={`/${item.imageFile}`}
+								width="400"
+								height="250"
 								alt={item.title}
 								className="h-auto max-w-full rounded-md"
 							/>
