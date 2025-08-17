@@ -14,33 +14,27 @@ export function PassengerBriefingSection({
 	const briefingItems = [
 		{
 			...t.seatBelts,
-			image: 'seatbelt safety demonstration with passenger fastening harness',
 			imageFiles: ['seatbelts-1.png', 'seatbelts-2.png'],
 		},
 		{
 			...t.environmental,
-			image: 'aircraft cabin air vents and environmental controls diagram',
 			imageFiles: ['environmental-1.png', 'environmental-2.png'],
 		},
 		{
 			...t.fireExtinguisher,
-			image: 'fire extinguisher location and operation in aircraft cabin',
 			imageFiles: ['fire-1.png', 'fire-2.png'],
 		},
 		{
 			...t.egress,
-			image: 'aircraft emergency exit doors and evacuation procedures',
 			imageFiles: ['egress-1.png', 'egress-2.png'],
 		},
 		{
 			...t.traffic,
-			image: 'pilot and passenger scanning for traffic outside aircraft windows',
 			imageFiles: ['traffic-1.png', 'traffic-2.png'],
 		},
 		{
 			...t.questions,
-			image: 'pilot briefing passenger with question marks and communication',
-			imageFiles: ['questions.png'],
+			imageFiles: ['questions-1.png', 'questions-2.png'],
 		},
 	];
 
