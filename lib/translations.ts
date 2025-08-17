@@ -1,6 +1,7 @@
 export const translations = {
 	en: {
 		title: 'General Aviation Passenger Briefing',
+		description: 'Safety briefing for general aviation passengers.',
 		beforeFlying: 'Before Flying',
 		passengerBriefing: 'Passenger Briefing',
 		feelingWell: {
@@ -58,6 +59,7 @@ export const translations = {
 	},
 	fr: {
 		title: 'Briefing Passager Aviation Générale',
+		description: "Briefing de sécurité pour les passagers d'aviation générale",
 		beforeFlying: 'Avant le Vol',
 		passengerBriefing: 'Briefing Passager',
 		feelingWell: {

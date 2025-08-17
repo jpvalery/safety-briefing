@@ -1,4 +1,6 @@
-import { type Locale, locales } from '@/lib/i18n';
+import { type Locale, defaultLocale, locales } from '@/lib/i18n';
+import { translations } from '@/lib/translations';
+import type { Metadata } from 'next';
 import { JetBrains_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import type React from 'react';
@@ -11,6 +13,36 @@ const jetbrainsMono = JetBrains_Mono({
 
 export async function generateStaticParams() {
 	return locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+	const { locale } = await params;
+
+	const current = locales.includes(locale as Locale)
+		? (locale as Locale)
+		: defaultLocale;
+
+	const t = translations[current];
+
+	return {
+		title: t.title,
+		description: t.description, // ideally add a `description` key in translations
+		openGraph: {
+			title: t.title,
+			description: t.description,
+			images: [
+				{
+					url: 'https://safety-briefing.com/og.png',
+				},
+			],
+			locale: current,
+		},
+		generator: 'v0.app',
+	};
 }
 
 export default async function LocaleLayout({

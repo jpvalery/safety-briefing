@@ -57,7 +57,7 @@ export function PassengerBriefingSection({
 						className="grid grid-cols-1 gap-8 border-2 border-zinc-900 bg-zinc-50 p-6 lg:grid-cols-2"
 					>
 						{/* Illustration Column */}
-						<div className='grid grid-flow-col flex-wrap items-center justify-center gap-4'>
+						<div className="grid grid-flow-col flex-wrap items-center justify-center gap-4">
 							{item.imageFiles.map((file, index) => (
 								<Image
 									key={index}
