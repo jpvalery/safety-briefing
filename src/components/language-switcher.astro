@@ -1,0 +1,46 @@
+---
+import { type Locale, languageNames, locales, useTranslations } from "../i18n";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<details class="group relative print:hidden">
+	<summary
+		class="flex cursor-pointer list-none items-center gap-2 border-2 border-current px-3 py-2 font-medium text-sm marker:hidden hover:bg-accent hover:text-accent-ink [&::-webkit-details-marker]:hidden"
+		aria-label={t.languageLabel}
+	>
+		<svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+			<circle cx="12" cy="12" r="9"></circle>
+			<path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"></path>
+		</svg>
+		<span>{languageNames[locale]}</span>
+		<svg viewBox="0 0 24 24" class="size-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+			<path d="M19 9l-7 7-7-7"></path>
+		</svg>
+	</summary>
+	<ul class="absolute right-0 z-20 mt-1 min-w-full border-2 border-line bg-card text-ink shadow-lg">
+		{
+			locales.map((l) => (
+				<li>
+					<a
+						href={`/${l}`}
+						lang={l}
+						hreflang={l}
+						aria-current={l === locale ? 'true' : undefined}
+						class:list={[
+							'block px-4 py-2 text-sm whitespace-nowrap hover:bg-accent hover:text-accent-ink',
+							l === locale && 'bg-ink font-bold text-paper',
+						]}
+					>
+						{languageNames[l]}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</details>

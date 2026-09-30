@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import { type Locale, useTranslations } from "../i18n";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	"../assets/illustrations/*.png",
+	{ eager: true },
+);
+const pair = (name: string) =>
+	[1, 2].flatMap((n) => {
+		const img = images[`../assets/illustrations/${name}-${n}.png`];
+		return img ? [img.default] : [];
+	});
+
+const items = [
+	{ ...t.seatBelts, images: pair("seatbelts") },
+	{ ...t.environmental, images: pair("environmental") },
+	{ ...t.fireExtinguisher, images: pair("fire") },
+	{ ...t.egress, images: pair("egress") },
+	{ ...t.traffic, images: pair("traffic") },
+	{ ...t.questions, images: pair("questions") },
+];
+---
+
+<section id="passenger-briefing" aria-labelledby="passenger-briefing-title" class="pb-24 print:pb-2">
+	<h2 id="passenger-briefing-title" class="mb-8 print:mb-1 border-b-2 border-line pb-2 font-bold text-2xl uppercase tracking-wide md:text-3xl print:text-base">
+		{t.passengerBriefing}
+	</h2>
+	<ol class="space-y-8 print:grid print:grid-cols-2 print:gap-2 print:space-y-0">
+		{
+			items.map((item, i) => (
+				<li class="card grid gap-6 border-2 border-line bg-card p-4 sm:p-6 lg:grid-cols-2 lg:items-center lg:gap-10 print:flex print:items-start print:gap-2 print:p-2">
+					<div class:list={['flex justify-center gap-3 sm:gap-4 print:shrink-0 print:gap-1', i % 2 === 1 && 'lg:order-2 print:order-none']}>
+						{item.images.map((img, n) => (
+							<Image
+								src={img}
+								alt={`${item.title} — ${t.illustrationAlt} ${n + 1}`}
+								widths={[160, 250, 500]}
+								sizes="(min-width: 1024px) 220px, 40vw"
+								loading={i === 0 ? 'eager' : 'lazy'}
+								class="h-auto w-[45%] max-w-[250px] rounded-md print:w-[18mm]"
+							/>
+						))}
+					</div>
+					<div>
+						<h3 class="mb-4 text-balance font-bold text-xl uppercase tracking-wide md:text-2xl print:mb-1 print:text-[9pt] print:leading-tight">{item.title}</h3>
+						<p class="text-balance text-muted leading-relaxed md:text-lg print:text-[8pt] print:leading-snug">{item.content}</p>
+					</div>
+				</li>
+			))
+		}
+	</ol>
+</section>

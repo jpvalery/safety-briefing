@@ -1,0 +1,25 @@
+---
+import { type Locale, useTranslations } from "../i18n";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<footer class="border-t-2 border-line bg-card py-8 print:py-1 print:text-[7pt]">
+	<div class="mx-auto max-w-7xl space-y-2 px-4 text-center sm:px-6 lg:px-8">
+		<p>
+			{t.footer.license}{' '}
+			<a
+				href="https://github.com/jpvalery/safety-briefing"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="font-semibold underline underline-offset-4 hover:text-accent"
+			>GitHub</a>
+		</p>
+		<p class="text-muted text-xs print:text-[7pt]">{t.footer.disclaimer}</p>
+	</div>
+</footer>

@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@import "@fontsource-variable/jetbrains-mono";
+
+@theme {
+	--font-sans:
+		"JetBrains Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
+	--color-paper: var(--paper);
+	--color-card: var(--card);
+	--color-ink: var(--ink);
+	--color-muted: var(--muted);
+	--color-line: var(--line);
+	--color-accent: var(--accent);
+	--color-accent-ink: var(--accent-ink);
+}
+
+:root {
+	--paper: oklch(1 0 0);
+	--card: oklch(0.985 0 0); /* zinc-50 */
+	--ink: oklch(0.141 0.005 285.823); /* zinc-950 */
+	--muted: oklch(0.274 0.006 286.033); /* zinc-800 */
+	--line: oklch(0.21 0.006 285.885); /* zinc-900 */
+	--accent: oklch(0.21 0.006 285.885);
+	--accent-ink: oklch(1 0 0);
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+		scroll-padding-top: 5rem;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+	}
+	body {
+		@apply bg-paper font-sans text-ink antialiased;
+	}
+	:focus-visible {
+		outline: 3px solid var(--accent);
+		outline-offset: 2px;
+	}
+}
+
+@media print {
+	/* Zero page margin leaves no area for the browser's URL/date header and
+	   footer; the spacing is added back as body padding. */
+	@page {
+		size: auto;
+		margin: 0;
+	}
+	body {
+		padding: 6mm;
+	}
+	.card {
+		break-inside: avoid;
+	}
+}

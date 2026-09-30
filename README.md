@@ -8,9 +8,25 @@ A friendly, multilingual website designed to prepare passengers for private gene
 
 - **Before Flying**: Key reminders to ensure a safe and comfortable flight, such as feeling well, eating before flying, and appropriate clothing.  
 - **Passenger Briefing**: Clear guidance on seat belts, environmental factors, fire extinguishers, emergency procedures, traffic awareness, and a section for passenger questions.  
-- **Multilingual Support**: English and French versions available.  
+- **Multilingual Support**: English, French, Spanish, German, Italian and Portuguese, each on its own URL (`/en`, `/fr`, …) with hreflang, localized metadata and sitemap entries.  
 - **Responsive Design**: Optimized for both desktop and mobile devices.  
 - **Visual Clarity**: Illustrations and layout inspired by aircraft safety cards, making information easy to read at a glance.
+
+---
+
+## Development
+
+Built with [Astro](https://astro.build) (static output) and Tailwind CSS v4.
+
+```sh
+pnpm install
+pnpm dev      # http://localhost:4321
+pnpm build    # type-check + static build into dist/
+```
+
+### Adding or fixing a language
+
+Copy `src/i18n/en.ts` to `src/i18n/<code>.ts`, translate it, then register it in `src/i18n/index.ts` (`translations`, `languageNames`, `ogLocales`) and in `astro.config.mjs` (`locales`). Pages, hreflang, and the sitemap pick it up automatically.
 
 ---
 

@@ -1,0 +1,36 @@
+---
+import { Icon } from "astro-icon/components";
+import { type Locale, useTranslations } from "../i18n";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const items = [
+	{ ...t.feelingWell, icon: "ph:smiley-nervous-duotone" },
+	{ ...t.emptyStomach, icon: "ph:bowl-food-duotone" },
+	{ ...t.clothing, icon: "ph:pants-duotone" },
+];
+---
+
+<section id="before-flying" aria-labelledby="before-flying-title" class="pb-24 print:pb-3">
+	<h2 id="before-flying-title" class="mb-8 print:mb-1 border-b-2 border-line pb-2 font-bold text-2xl uppercase tracking-wide md:text-3xl print:text-base">
+		{t.beforeFlying}
+	</h2>
+	<ul class="grid grid-cols-1 gap-8 lg:grid-cols-3 print:grid-cols-3 print:gap-3">
+		{
+			items.map((item) => (
+				<li class="card border-2 border-line bg-card p-6 print:p-2">
+					<div class="flex h-16 items-center gap-3 pb-4 print:h-auto print:pb-1">
+						<Icon name={item.icon} class="size-[42px] shrink-0 print:size-6" aria-hidden="true" />
+						<h3 class="text-balance font-bold text-lg uppercase tracking-wide print:text-[9pt] print:leading-tight">{item.title}</h3>
+					</div>
+					<p class="text-balance text-muted leading-relaxed print:text-[8pt] print:leading-snug">{item.content}</p>
+				</li>
+			))
+		}
+	</ul>
+</section>

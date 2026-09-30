@@ -1,0 +1,28 @@
+---
+import { languageNames, locales } from "../i18n";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>General Aviation Passenger Briefing</title>
+		<meta name="robots" content="noindex, follow" />
+		<link rel="canonical" href="https://safety-briefing.com/en" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<noscript><meta http-equiv="refresh" content="0; url=/en" /></noscript>
+		<script is:inline define:vars={{ locales }}>
+			const wanted = (navigator.languages || [navigator.language]).map((l) => l.slice(0, 2).toLowerCase());
+			const match = wanted.find((l) => locales.includes(l)) || 'en';
+			location.replace('/' + match + location.hash);
+		</script>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				{locales.map((l) => <li><a href={`/${l}`} lang={l} hreflang={l}>{languageNames[l]}</a></li>)}
+			</ul>
+		</nav>
+	</body>
+</html>

@@ -48,3 +48,9 @@ yarn-error.log*
 # AI Rules
 .cursorrules
 .github/copilot-instructions.md
+
+# Astro
+.astro/
+
+# Generated output
+/output

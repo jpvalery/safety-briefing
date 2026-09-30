@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon/components";
+import BeforeFlying from "../components/before-flying.astro";
+import PassengerBriefing from "../components/passenger-briefing.astro";
+import SiteFooter from "../components/site-footer.astro";
+import SiteHeader from "../components/site-header.astro";
+import { type Locale, locales, useTranslations } from "../i18n";
+import BaseLayout from "../layouts/base-layout.astro";
+
+export function getStaticPaths() {
+	return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const t = useTranslations(locale);
+---
+
+<BaseLayout locale={locale}>
+	<SiteHeader locale={locale} />
+	<main id="main" class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 print:py-2">
+		<BeforeFlying locale={locale} />
+		<PassengerBriefing locale={locale} />
+		<div class="flex justify-center pb-16 print:hidden">
+			<button
+				type="button"
+				onclick="window.print()"
+				class="flex items-center gap-2 border-2 border-line px-4 py-2 text-sm hover:bg-accent hover:text-accent-ink"
+			>
+				<Icon name="ph:printer" class="size-4" aria-hidden="true" />
+				{t.print}
+			</button>
+		</div>
+	</main>
+	<SiteFooter locale={locale} />
+</BaseLayout>
